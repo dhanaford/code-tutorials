@@ -1,0 +1,91 @@
+<html>
+    <head></head>
+  <body>
+  </body>
+  <script type="text/javascript">
+    /*
+    The museum of incredible dull things
+
+    The museum of incredible dull things wants to get rid of some exhibitions. Miriam, the interior architect, comes up with a plan to remove the most boring exhibitions. She gives them a rating, and then removes the one with the lowest rating.
+
+    However, just as she finished rating all exhibitions, she's off to an important fair, so she asks you to write a program that tells her the ratings of the items after one removed the lowest one. Fair enough.
+
+    Task
+
+    Given an array of integers, remove the smallest value. If there are multiple elements with the same value, remove the one with a lower index. If you get an empty array/list, return an empty array/list.
+
+    Don't change the order of the elements that are left.
+
+    Examples
+
+    removeSmallest([1,2,3,4,5]) = [2,3,4,5]
+    removeSmallest([5,3,2,1,4]) = [5,3,2,4]
+    removeSmallest([2,2,1,2,1]) = [2,2,2,1]
+
+-----------
+
+    function removeSmallest(numbers) {
+        if(numbers.length === 0 || numbers.length === 1) return [];
+            min = Math.min.apply(null,numbers);
+            var index = numbers.indexOf(min);
+
+            if(index > -1) {
+                numbers.splice(index, 1);
+          }
+
+          return numbers
+    }
+
+    console.log(removeSmallest([4,12,3,5,7,10,5,6]));
+---------------
+    Implement the following methods:
+
+    Object.prototype.random(): returns randomly one of the values of the object.
+
+    For example:
+
+    var obj = {
+        a: 1,
+        b: {
+            x: 2,
+            y: 3
+        },
+        c: {
+            z: {
+                q: 4
+            }
+        }
+    };
+
+    obj.random(); //returns 1 or 2 or 3 or 4. All values have the same probability to be returned
+
+    obj = {};
+
+    obj.random(); //returns undefined
+    Object.prototype.toRandomArray(): returns an array of the random values.
+
+    For example,
+
+    var obj = {
+        a: 1,
+        b: {
+            x: 2,
+            y: 3
+        },
+        c: {
+            z: {
+                q: 4
+            }
+        }
+    };
+
+    obj.toRandomArray(); //returns a random permutation of [1, 2, 3, 4]
+
+    obj = {};
+
+    obj.toRandomArray(); //returns []
+------------
+*/
+
+  </script>
+</html>
