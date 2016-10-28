@@ -4,17 +4,13 @@
     <script type="text/javascript">
 
     /*
-
     Enter a string and the program will reverse it and print it out.
-
     */
-    function reversString(string) {
-        string = [];
-        string.reverse(string);
-        console.log(string);
-    }
 
-    reversString("test");
+    function reverseString(s) {
+        return s.split('').reverse().join('');
+    }
+    console.log(reverseString("test"));
 
     </script>
 </body>
