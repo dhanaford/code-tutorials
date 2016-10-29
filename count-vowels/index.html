@@ -1,0 +1,62 @@
+<html>
+<head></head>
+<body>
+    <script type="text/javascript">
+
+    /*
+    Enter a string and the program counts the number of vowels in the text.
+    For added complexity have it report a sum of each vowel found.
+    */
+
+    function countVowels(s) {
+        var a = s.match(/a/gi);
+        var e = s.match(/e/gi);
+        var i = s.match(/i/gi);
+        var o = s.match(/o/gi);
+        var u = s.match(/u/gi);
+
+        if (u === null) {
+            var uTotal = 0;
+        } else {
+            var uTotal = u.length;
+        }
+
+        if (i === null) {
+            var iTotal = 0;
+        } else {
+            var iTotal = i.length;
+        }
+
+        if (o === null) {
+            var iTotal = 0;
+        } else {
+            var oTotal = o.length;
+        }
+
+        if (e === null) {
+            var iTotal = 0;
+        } else {
+            var eTotal = e.length;
+        }
+
+        if (a === null) {
+            var aTotal = 0;
+        } else {
+            var aTotal = a.length;
+        }
+
+        var totalVowels = s.match(/[aeiou]/gi).length;
+
+        console.log("A's = " + aTotal);
+        console.log("E's = " + eTotal);
+        console.log("I's = " + iTotal);
+        console.log("O's = " + oTotal);
+        console.log("U's = " + uTotal);
+        console.log("Total vowels = " + totalVowels);
+    }
+
+    console.log(countVowels("aasdasdkmklasldkmqslkfiapasdko[pqwiofhqoeinnaljsdeonjasnlsa"));
+
+    </script>
+</body>
+</html>
