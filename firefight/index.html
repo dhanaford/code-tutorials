@@ -1,0 +1,51 @@
+<html>
+<head>
+</head>
+
+<body>
+	<div>
+		<h1 id="header"></h1>
+	</div>
+
+<script>
+
+/*
+Enjoying your holiday, you head out on a scuba diving trip!
+
+Disaster!! The boat has caught fire!!
+
+You will be provided a string that lists many boat related items. If any of these items are "Fire" you must spring into action. Change any instance of "Fire" into "~~". Then return the string.
+
+Go to work!
+
+Test.assertEquals(fireFight("Boat Rudder Mast Boat Hull Water Fire Boat Deck Hull Fire Propeller Deck Fire Deck Boat Mast"), "Boat Rudder Mast Boat Hull Water ~~ Boat Deck Hull ~~ Propeller Deck ~~ Deck Boat Mast");
+
+
+*/
+
+
+function fireFight(stringToSplit){
+  var arrayOfStrings = [];
+  var fire = 'fire';
+  var water = '~~';
+  arrayOfStrings = stringToSplit.split(" ");
+  for (var i = 0; i <= arrayOfStrings.length; i++) {
+
+    if (arrayOfStrings[i] === fire) {
+      //convert string to ~~
+      arrayOfStrings[i] = water;
+    }
+
+  }
+  var newString = arrayOfStrings.toString().replace(/,/g, ' ');
+  return newString;
+}
+
+console.log(fireFight("string space fire dog cat fire"));
+
+
+
+</script>
+</body>
+
+</html>
