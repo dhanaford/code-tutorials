@@ -1,0 +1,184 @@
+<html>
+<head></head>
+<body>
+    <script type="text/javascript">
+
+
+    //Write a JavaScript program to find the area of a triangle where lengths of the three of its sides are 5, 6, 7
+
+    function triangleArea (a,b,c) {
+      var p = (a + b + c) / 2;
+      var area = Math.sqrt((p * ((p-a) * (p - b) * (p - c))));
+      console.log(area);
+    }
+    //triangleArea(5,6,7);
+
+    // Write a JavaScript program to rotate the string 'w3resource' in right direction by periodically removing one letter from the end of the string and attaching it to the front.
+
+    function rotateString (string) {
+      return string.split('').reverse().join('');
+    }
+
+    // console.log(rotateString('w3resource'));
+
+    // Write a JavaScript function that reverse a number
+    function reverseNumber(num) {
+      num = num.toString();
+      return num.split("").reverse().join("");
+    }
+
+    //console.log(reverseNumber(123));
+
+
+    //Write a JavaScript function that checks whether a passed string is palindrome or not? e.g., madam or nurses
+
+    function isPalindrome(string) {
+        // Change the string into lower case and remove  all non-alphanumeric characters
+
+        var newString = string.toLowerCase().replace(/[^a-zA-Z0-9]+/g,'');
+        console.log(newString);
+
+        // Check if the length of the string is even or odd
+        if ((newString.length % 2) == 0) {
+            ccount = (newString.length / 2);
+        } else {
+            // If the length of the string is 1 then it becomes a palindrome
+            if (newString.length === 1) {
+                console.log('The entry is a palindrome');
+                return true;
+            } else {
+                // If the length of the string is odd ignore middle character
+                ccount = (newString.length - 1) / 2;
+            }
+        }
+
+        // Loop through to check the first character to the last character and then move next
+        for (var i = 0; i < ccount; i++) {
+            // Compare characters and drop them if they do not match
+            if (newString[i] != newString.slice(-1-i)[0]) { //.slice(0,-1)
+                console.log('Entry is not a palindrome');
+                return false;
+            }
+        }
+        console.log('The entry is a palindrome');
+        return true;
+
+    }
+    // isPalindrome('A Santa at Nasa')
+
+
+    // Write a JavaScript function that returns a passed string with letters in alphabetical order.
+
+    function alphabetize(string) {
+        return string.split('').sort().join('');
+    }
+
+    // console.log(alphabetize('webmaster'));
+
+
+    // Write a JavaScript function that accepts a string as a parameter and converts the first letter of each word of the string in upper case.
+    // Example string : 'the quick brown fox'
+    // Expected Output : 'The Quick Brown Fox '
+
+    function firstLetterUpper (string) {
+        // convert to array, split each word
+        var array = string.split(' ');
+        var newArray = [];
+
+        // convert first letter(value) in array to uppercase and push into newArray
+        for (var i = 0; i < array.length; i++) {
+            newArray.push(array[i][0].toUpperCase() + array[i].slice(1));
+        }
+
+        // convert back into sentence
+        return newArray.join(' ');
+    }
+
+    //console.log(firstLetterUpper('the quick brown fox'));
+
+    // Write a JavaScript function that accepts a string as a parameter and find the longest word within the string.
+    // Example string : 'Web Development Tutorial'
+    // Expected Output : 'Development'
+
+    function findLongestString (string) {
+        //This
+        //return string.split(' ').sort().splice(0,1).join('');
+         //OR Ths
+        string = string.split(' ');
+        return string.reduce(function (long, word) {
+            if (word.length > long.length) {
+                return word;
+            } else {
+                return long;
+            }
+        });
+
+        // loop over array, finding longest
+        // for (var i = 0; i < array.length; i++) {
+        //     newArray.push(array[i].length);
+        //     var max = Math.max(...newArray);
+        // }
+
+    }
+    // console.log(findLongestString('Web Development Tutorial'));
+
+
+    // Write a JavaScript function which accepts an argument and returns the type.
+
+    function checkType(arg) {
+        return typeof arg;
+    }
+
+    //console.log(checkType(false));
+
+
+
+    // Write a JavaScript function which will take an array of numbers stored and find the second lowest and second greatest numbers, respectively.
+    // Sample array : [1,2,3,4,5]
+    //Expected Output : 2,4
+
+    function findLowHigh (arr) {
+        arr.sort(function (a, b) {
+            return a - b;
+        });
+        arrLowHigh = [];
+        var lowest = arr.slice(1,2).join('');
+        var highest = arr.slice(-2, (arr.length - 1)).join('');
+        arrLowHigh.push(lowest, highest);
+        return arrLowHigh.join(',');
+    }
+    // console.log(findLowHigh([1,4,2,10,5]));
+
+
+    // Write a JavaScript function to  get the number of occurrences of each letter in specified string
+
+    function numOcurrences (string) {
+        var sortedArr = string.split('').sort();
+        var a = [];
+        var b = [];
+        var prev = '';
+        var mappedArray = [];
+
+        for (var i = 0; i < sortedArr.length; i++) {
+            if (sortedArr[i] !== prev) {
+                a.push(sortedArr[i]);
+                b.push(1);
+            } else {
+                b[b.length - 1]++;
+            }
+            prev = sortedArr[i];
+        }
+        function Arr2object(a, b) {
+          return a.reduce(function(prev, val, i) {
+              prev[val] = b[i];
+              return prev;
+            }, {}
+          );
+        }
+        console.log(Arr2object(a, b));
+
+    }
+    console.log(numOcurrences('asdasasdasddsvlkkw'));
+    </script>
+</body>
+</html>
