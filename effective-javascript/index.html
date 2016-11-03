@@ -1,0 +1,188 @@
+<html>
+<head>
+</head>
+
+<body>
+
+<script>
+
+
+
+// Chapter 2: Variable scope
+
+// 9. Always declare local variables with var. Linting tools help to find unbound variables.
+
+    function swap(a, i, j) {
+        temp = a[i]; // global. Should use var
+        a[i] = a[j];
+        a[j] = temp;
+        console.log(a[i]);
+        console.log(i);
+        console.log(j);
+    }
+// 10. Avoid with:
+
+// 11. Get comfortable with Closures.
+// 1. Js allows you to refer to variables that were defined outside the scope of the current function.
+    function makeSandich() {
+        var magicIngrediant = 'Peanut Butter';
+        function make(filling) {
+            return magicIngrediant + ' and ' + filling;
+        }
+        return make('jelly'); // 'Peanut Butter and jelly'
+    }
+// 2. Functions can refer to variables defined in outer functions even after those outer functions have returned. JS functions are 1st class objects.
+    function sandwichMaker () {
+        var magicIngrediant = 'peanut butter';
+        function make(filling) {
+            return magicIngrediant + ' and ' + filling;
+        }
+        // return make function itself.
+        return make;
+    }
+    // define f as the function. Value of f is the inner function and calling f effectively calls make. Even though sandwichMaker was already returned, make remembers the value of magicIngrediant.
+    var f = sandwichMaker();
+
+    console.log(f('jelly')); // peanut butter and jelly
+
+    // Functions that keep track of variables from their containing scopes are known as closures. The make function is a closure whose code refers to two outer variables, magicIngrediant and filling. Whenever the make function is called, its code is able to refer to these two variables because they are stored in the closure.
+
+    // A more general purpose sandwichMaker
+    function sandwichMaker () {
+        function make(filling) {
+            return magicIngrediant + ' and ' + filling;
+        }
+        return make;
+    }
+
+    var hamAnd = sandwichMaker('ham');
+    var turkeyAnd = sandwichMaker('swiss');
+    hamAnd('cheese'); // ham and cheese
+    turkeyAnd = sandwichMaker('provolone');
+    // this example creates 2 different functions, hamAnd and turkeyAnd. Even though they come from the same definition, they are 2 distint objects. The first stores ham as the value of magicIngrediant and the second stores turkey.
+
+    //literal syntax. function is anonymous. Not neccessary to name the function since we are only evaluating it to produce a new function value, but do not intent to call it locally.
+    function sandwichMaker (magicIngrediant) {
+        return function (filling) {
+            return magicIngrediant + ' and ' + filling;
+        }
+        return make;
+    }
+
+    // 3.Closures can update the value of their outer variables
+
+
+//Working with functions
+
+// 18: Understand the difference between function, method, and constructor calls (just 3 different usage patterns of one single construct: functions)
+
+// simples usage
+function hello (username) {
+    return 'Hello' + username;
+}
+hello('David'); // 'Hello David'. Calls the function and binds the username parameter to its given argument.
+
+// Methods are nothing more than object properties that happen to be functions.
+
+// var obj = {
+//     hello: function () {
+//         return 'Hello' + '' + this.username;
+//     },
+//     username: 'David'
+// };
+// obj.hello(); // 'Hello '
+//
+// //we can copy a reference to the same function in another object to get a different answer.
+// var obj2 = {
+//     hello: obj.hello,
+//     username: 'David'
+// };
+// obj2.hello(); //'Hello David'
+
+//calling a method on an object looks up the method and then uses that object as the method's reciever.
+//since methods are nothing more than functions called on a particular object, there is no reason why an ordinary function can't refer to this:
+function hello() {
+    return 'Hello ' + this.username;
+}
+//this can be useful for predefining a function for sharing amoong multiple objects
+var obj1 = {
+    hello: hello, //function bound here
+    username: 'David Hanaford'
+};
+obj1.hello(); // 'Hello David Hanaford'
+var obj1 = {
+    hello: hello,
+    username: 'Biff Tannen'
+};
+obj2.hello(); // 'Hello Biff Tannen'
+
+//a function that uses this is not useful to call as a function rather than a method
+hello(); // 'hello undefined'
+// a non-method function call provides the global object as the reciever which has no property called username and produces undefined.
+//es5
+hello(); // error: cannot read property 'username' of undefined
+//helps catch accidental misuse of methods as plain functions by failing more quickly since attempting to access properties of undefined throw an error.
+
+//3rd use of functions is as constructors. Just like methods and plain functions, constructors are defined with functions:
+function User(name, passwordHash) {
+    this.name = name;
+    this.passwordHash = passwordHash;
+}
+//Invoking User with the new operator treats it as a constructor:
+var u = new User('sfalken','78173409180192831');
+u.name; // 'sfalken'
+// Unlike function calls and method calls, a constructor call passes a brand new object as the value of this, and implicitly returns the new object as a result. The constructors primary role is to initiailize the object.
+
+//Things to Remember
+//Method calls provide the object in which the method property is looked up as their reviever
+//Function calls provide the global object as the reciever. Calling functions with function call syntax is rarely useful.
+//Constructors are called with new and recieve a fresh object as their reciever.
+
+// 19: Get comfortable with higer order functions
+// Higher order functions are nothing more than functions that take other functions as arguments or return functions as their result. Taking a function as an argument (often referred to as a callback function because it is called back by the higer order function) is a powerful.
+//Consider the standard sort method on an array. In order to work on all possible arrays, the sort method relies heavily on the caller to determine how to compare any two elements of an array
+function compareNumbers(x,y) {
+    if (x < y) {
+        return -1;
+    }
+    if (x > y) {
+        return 1;
+    }
+    return 0;
+}
+[3,1,4,1,5,9].sort(compareNumbers); // [1,1,3,4,5,9]
+//taking a function directly is simpler and more concice. Simplified with an anonymous function:
+[3,1,4,1,5,9].sort(function (x,y) {
+    if (x < y) {
+        return -1;
+    }
+    if (y > x) {
+        return 1;
+    }
+    return 0;
+}); // [1,1,3,4,5,9]
+//many common operations on array have nice higer-order abstractions.
+//Consider simple act of transforming an array of strings to uppercase. With a loop:
+var names = ['Fred', 'Wilma', 'Pebbles'];
+var upper = [];
+for (var i = 0; n = names.length; i < n; i++) {
+    uppper[i] = names[i].toUpperCase();
+}
+console.log(upper);
+//But map method, we can eliminate loops details, implementing an element by element transformation with a local function:
+var names = ['Fred', 'Wilma', 'Pebbles'];
+var upper = names.map(function(name) {
+    return name.toUpperCase();
+});
+upper; // ['FRED', 'WILMA', 'PEBBLES']
+//You can write your own higher order functions.
+// Higer order functions are functions that take other functions as arguments or return functions as their results.
+// Learn to detect common coding patterns that can be replaced by higer order functions.
+var randon = buildString(8, function() {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + aIndex)
+})
+
+</script>
+</body>
+
+</html>
