@@ -114,7 +114,6 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
     }
     // console.log(anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']));
 
-
 //Write a function evilTwin(obj) which returns a new object with all the same properties as obj, and with an additional property hasGoatee set to true.
 
     function evilTwin(obj) {
@@ -124,7 +123,6 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
            }
        });
     }
-
 
     //Your task is to sort a given string. Each word in the String will contain a single number. This number is the position the word should have in the result.
     //Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0).
@@ -215,6 +213,84 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
     console.log(uniqueInOrder('AAAABBBCCDAABBB'));
 
+    // You have an array of numbers.
+    // Your task is to sort ascending odd numbers but even numbers must be on their places.
+    // Zero isn't an odd number and you don't need to move it. If you have an empty array, you need to return it.
+    // sortArray([5, 3, 2, 8, 1, 4]) == [1, 3, 2, 8, 5, 4]
+
+    function sortArray(array) {
+        //create new array of odd numbers and then perform basic sort
+        var odd = array.filter(isOdd).sort(function(a,b) { return a - b; });
+        function isOdd(num) {
+            return num % 2;
+        }
+        function replaceOdd(num) {
+            return isOdd(num) ? odd.shift() : num;
+        }
+        // map array
+        return array.map(replaceOdd);
+    };
+
+    //console.log(sortArray([5, 3, 2, 8, 1, 4]));
+
+
+    // Complete the solution so that it reverses all of the words within the string passed in.
+    // Example:
+    // reverseWords("The greatest victory is that which requires no battle")
+    // should return "battle no requires which that is victory greatest The"
+
+    function reverseWords(str){
+        return str.split(' ').reverse().join(' ');
+    }
+
+    //console.log(reverseWords("hello word!"));
+
+
+
+// There is a 2D array arr:
+// [[1],[2,3],[4,5,6],[7,8,9,10]]
+// Task1: Write a function split. Split 2D array to two arrays:
+//    Result: array 1: all numbers in 2D array array 2: Leave all subarrays and fill in the length of each subarray
+//     [ [1,2,3,4,5,6,7,8,9,10], [[1],[2],[3],[4]] ]
+//
+//  Task2: Write a function `join`. Join two array(like the result above) to one array(like the `arr` above)
+//
+//
+// - #Some Examples
+// split:
+//
+// arr= [[1],[2,3],[4,5,6],[7,8,9,10]] split(arr) === [ [1,2,3,4,5,6,7,8,9,10], [[1],[2],[3],[4]] ]
+//
+// arr= [[1,3,5],[2,4,6],[7,8,9]] split(arr) === [ [1,3,5,2,4,6,7,8,9], [[3],[3],[3]] ]
+//
+// join:
+//
+// arr1=[1,2,3,4,5,6,7,8,9,10], arr2=[[1],[2],[3],[4]] join(arr1,arr2) === [[1],[2,3],[4,5,6],[7,8,9,10]]
+//
+// arr1=[1,3,5,2,4,6,7,8,9], arr2=[[3],[3],[3]] join(arr1,arr2) === [[1,3,5],[2,4,6],[7,8,9]]
+//
+
+    function split(arr){
+        // split into two arrays
+
+        //arr.forEach(logArrayElements);
+
+        // array 1 = all the numbers in arr
+        var newArray = arr.join().split(',');
+
+        // array 2 = an array with the length of each array
+        var newArray2 = arr.forEach(function(i) {
+            return arr[i].length;
+        })
+        console.log(newArray2);
+
+    }
+    console.log(split([[1],[2,3],[4,5,6],[7,8,9,10]]));
+
+    function join(arr1, arr2){
+      //
+
+    }
 
   </script>
 </html>
