@@ -112,7 +112,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
         return item.split('').sort().join('') === word.split('').sort().join('');
       });
     }
-    console.log(anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']));
+    // console.log(anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']));
 
 
 //Write a function evilTwin(obj) which returns a new object with all the same properties as obj, and with an additional property hasGoatee set to true.
@@ -124,6 +124,97 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
            }
        });
     }
+
+
+    //Your task is to sort a given string. Each word in the String will contain a single number. This number is the position the word should have in the result.
+    //Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0).
+    //If the input String is empty, return an empty String. The words in the input String will only contain valid consecutive numbers.
+    //For an input: "is2 Thi1s T4est 3a" the function should return "Thi1s is2 3a T4est"
+
+    function order(words){
+        var arr = words.split(' ');
+
+        function compare(a, b) {
+            if (Number(a.match(/\d+/)[0]) < Number(b.match(/\d+/)[0])) {
+                return -1;
+            }
+            if (Number(a.match(/\d+/)[0]) > Number(b.match(/\d+/)[0])) {
+                return 1;
+            }
+            return 0;
+        }
+        return arr.sort(compare);
+    }
+
+    // console.log(order('is2 Thi1s T4est 3a'));
+
+    String.prototype.toJadenCase = function () {
+        return this.split(' ').map(function (item) {
+            return item.replace(item.charAt(0), item.charAt(0).toUpperCase());
+        }).join(' ');
+    };
+      //console.log(jadenCase);
+    var str = 'How can mirrors be real if our eyes arent real';
+    //console.log(str.toJadenCase());
+    //console.log(toJadenCase('How can mirrors be real if our eyes arent real'));
+
+
+    //Dictionary from two lists
+
+    // There are two lists of different length. The first one consists of keys, the second one consists of values. Write a function createDict(keys, values) that returns a dictionary created from keys and values. If there are not enough values, the rest of keys should have a None (JS null)value. If there not enough keys, just ignore the rest of values.
+
+    // keys = ['a', 'b', 'c', 'd']
+    // values = [1, 2, 3]
+    // createDict(keys, values) // returns {'a': 1, 'b': 2, 'c': 3, 'd': null}
+
+    function createDict(keys, values){
+        var dict = {};
+
+        // best practice with teranary expression
+        /*
+        for (var i = 0; i < keys.length; i++) {
+            dict[keys[i]] = i < values.length ? values[i] : null
+        }
+        */
+
+        for (var i = 0; i < keys.length; i++) {
+            if (values[i] === undefined) {
+                values[i] = null;
+            }
+            dict[keys[i]] = values[i];
+        }
+        return dict;
+    }
+
+    // console.log(createDict(['a', 'b', 'c', 'd'], [1, 2, 3]));
+
+
+    // Unique in order
+    // Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements.
+
+    // For example:
+    // uniqueInOrder('AAAABBBCCDAABBB') == ['A', 'B', 'C', 'D', 'A', 'B']
+    // uniqueInOrder('ABBCcAD')         == ['A', 'B', 'C', 'c', 'A', 'D']
+    // uniqueInOrder([1,2,2,3,3])       == [1,2,3]
+
+    var uniqueInOrder = function(iterable) {
+        var arr;
+        var returnArray = [];
+        if (typeof iterable === 'string') {
+            arr = iterable.split('');
+        }
+
+        arr = iterable;
+        for (var i = 0; i < iterable.length; i++) {
+            if (iterable[i] !== iterable[i + 1]) {
+                returnArray.push(iterable[i]);
+            }
+        }
+        return returnArray;
+    }
+
+    console.log(uniqueInOrder('AAAABBBCCDAABBB'));
+
 
   </script>
 </html>

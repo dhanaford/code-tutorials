@@ -16,7 +16,7 @@
     // Write a JavaScript program to rotate the string 'w3resource' in right direction by periodically removing one letter from the end of the string and attaching it to the front.
 
     function rotateString (string) {
-      return string.split('').reverse().join('');
+        return string.split('').reverse().join('');
     }
 
     // console.log(rotateString('w3resource'));
@@ -132,7 +132,6 @@
     //console.log(checkType(false));
 
 
-
     // Write a JavaScript function which will take an array of numbers stored and find the second lowest and second greatest numbers, respectively.
     // Sample array : [1,2,3,4,5]
     //Expected Output : 2,4
@@ -178,7 +177,26 @@
         console.log(Arr2object(a, b));
 
     }
-    console.log(numOcurrences('asdasasdasddsvlkkw'));
+    // console.log(numOcurrences('asdasasdasddsvlkkw'));
+
+    // Define a method that accepts 2 strings as parameters. The method returns the first string sorted by second.
+    // sort_string('foos', 'of')
+    // # => 'oofs'
+
+
+    // Write a JavaScript program to shuffle an array.
+
+    function shuffleArray (arr) {
+        return arr.sort(function (a,b) {
+            return a - b;
+        });
+    }
+
+    // console.log(shuffleArray(['can', 'dog', 'ginger']))
+
+    // There are two arrays with individual values, write a JavaScript program to compute the sum of each individual index value from the given arrays
+
+
     </script>
 </body>
 </html>
