@@ -101,9 +101,9 @@
     // Expected Output : 'Development'
 
     function findLongestString (string) {
-        // This
-        // return string.split(' ').sort().splice(0,1).join('');
-        // OR Ths
+        //This
+        //return string.split(' ').sort().splice(0,1).join('');
+         //OR Ths
         string = string.split(' ');
         return string.reduce(function (long, word) {
             if (word.length > long.length) {
@@ -194,13 +194,52 @@
 
     // console.log(shuffleArray(['can', 'dog', 'ginger']))
 
-    // There are two arrays with individual values, write a JavaScript program to compute the sum of each individual index value from the given arrays
-    //Sample array :
-    // array1 = [1,0,2,3,4];
-    // array2 = [3,5,6,7,8,13];
-    // Output: [4, 5, 8, 10, 12, 13]
+    // Write a JavaScript program to list the properties of a JavaScript object.
+    //Sample
+    var Student = {
+        name: 'David Rayy',
+        sclass: 'VI',
+        rollno: 12
+    };
+    // output: name,sclass,rollno
 
-    function addArrays ()
+    function getObjectProperties () {
+        // .keys returns an array containing all of the given objects own enumerable properties
+        console.log(Object.keys(student));
+
+        // iterates over the enumerable properties of an object, in arbitrary order. For each distinct property, statements can be executed
+        for (var name in student) {
+            console.log(name);
+        }
+    }
+
+    //  Write a JavaScript program to delete the rollno property from the object. Also print the object before or after deleting the property.
+
+    (function() {
+        'use strict';
+
+        var Student = {
+            name: 'David Rayy',
+            sclass: 'VI',
+            rollno: 12
+        };
+
+        console.log('Object before: ', Student);
+        // The delete operator removes a property from an object.
+        delete Student.rollno;
+        console.log('Object after: ', Student);
+
+    })();
+
+
+    // Write a JavaScript program to get the length of a JavaScript object.
+
+    function getObjectLength () {
+
+    }
+
+
+
 
     </script>
 </body>
