@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">  </head>
+  <style lang="text/css">
+
+  body {
+      background-color: #ccc;
+      min-height: 100vh;
+  }
+
+  header {
+      height: 3em;
+      background-color: black;
+  }
+
+  footer {
+      background-color: grey;
+  }
+
+  aside {
+
+  }
+
+.flex-wrapper {
+    /* We first create a flex layout context */
+    display: flex;
+    /* flex direction and flex-wrap */
+    /* Then we define the flow direction and if we allow the items to wrap
+     * Remember this is the same as:
+     * flex-direction: row;
+     * flex-wrap: wrap;
+     */
+    flex-flow: row wrap;
+    /* Then we define how is distributed the remaining space */
+    justify-content: center; /* could use margin: auto for flex-child? */
+}
+
+.flex-child {
+    flex: 1 1 auto;
+    padding: 1em;
+    height: 150px;
+    background-color: #ddd;
+    border: 3px solid #000;
+}
+
+.flex-child2 {
+    /* This is the shorthand for flex-grow, flex-shrink and flex-basis combined.
+    The second and third parameters (flex-shrink and flex-basis) are optional. Default is 0 1 auto. */
+    flex: 2 2 auto;
+}
+
+
+  </style>
+<body>
+    <header>Header</header>
+    <div class="flex-wrapper">
+        <div class="flex-child">1</div>
+        <div class="flex-child flex-child2">2</div>
+        <div class="flex-child">3</div>
+    </div>
+    <footer>footer</footer>
+</body>
+</html>
