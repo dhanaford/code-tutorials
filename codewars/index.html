@@ -298,7 +298,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
     //In other words: find all the matrix elements with the same value as [0][0] that you can go to by moving only down, up, right or left from [0][0] - without going into a field storing any other value.
 
-    var city1 = [[7, 2, 3], [7, 2, 3], [1, 2, 7]];
+    var matrix = [[7, 2, 3], [7, 2, 3], [1, 2, 7]];
 
     var contaminatedInCity1 = [
         [1, 0, 0],
@@ -306,18 +306,34 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
         [0, 0, 0]
     ]; // number 7 is a zombie, but the 7 in bottom right corner is not a zombie yet - the virus didn't get there.
 
-    function findZombies(arr) {
-     if (typeof arr == 'object') {
-         for (var elem in arr) {
-             console.log(arr[elem]);
-             //var zombie =
-         }
-     }
+    function findZombies(matrix) {
+      newArr = [];
+      for (var i = 0; i < matrix.length; i++) {
+        var element = matrix[i];
+        for (var j = 0; j < element.length; j++) {
+          //var zombie = element[i][j];
+          //console.log(zombie);
+          //console.log(element[j]);
+          newArr.push(element[j]);
+        }
 
+      }
+      console.log(newArr);
+      var zombie = newArr[0];
+      console.log(zombie);
 
-     // console.log(city2);
+      for (var k = 0; k < newArr.length; k++) {
+        if (newArr[i] === zombie) {
+          newArr[i] = 1;
+        } else {
+          newArr[i] = 0;
+        }
+      }
+
+      //return matrix;
+
     }
-    console.log(findZombies(city1));
+    console.log(findZombies(matrix));
 
   </script>
 </html>
