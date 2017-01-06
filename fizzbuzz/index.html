@@ -9,18 +9,31 @@
     For numbers which are multiples of both three and five print “FizzBuzz”.
 
     */
-        for (var i =0; i < 100; i++) {
-            var string = '';
-            if (i % 3 === 0) {
-                string += 'Fizz';
-            }
-            if (i % 5 === 0) {
-                string += 'Buzz';
-            }
-            if (string === '') {
-                string += i;
-            }
-            console.log(string);
+    for (i=1; i<=20; i++) {
+        // if the number is divisible by 3, write "Fizz"
+        if ( i % 3 === 0 && i % 5 === 0) {
+        console.log("FizzBuzz"); }
+        // if the number is divisible by 5, write "Buzz"
+        else if ( i % 3 === 0) {
+        console.log("Fizz"); }
+        // otherwise, write just the number
+        else if ( i % 5 === 0) {
+          console.log("Buzz"); }
+        else {
+        console.log(i);
+        }
+    }
+
+        // Fibonaci sequence
+        var a = 0;
+        var b = 1;
+        var result;
+
+        for (var i = 1; i <=100; i++) {
+          result = a + b;
+          a = b;
+          b = result;
+          console.log(result);
         }
 
     </script>
